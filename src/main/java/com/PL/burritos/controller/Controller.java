@@ -1,4 +1,4 @@
-package com.PL.burritos;
+package com.PL.burritos.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 

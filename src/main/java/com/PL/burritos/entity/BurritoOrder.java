@@ -3,9 +3,11 @@ package com.PL.burritos.entity;
 import lombok.Data;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data  // Annotation from lombok that auto generates constructors and basic methods
-public class TacoOrder {
+public class BurritoOrder {
 
     private String deliveryName;
     private String deliveryStreet;
@@ -16,7 +18,11 @@ public class TacoOrder {
     private String ccExpiration;
     private String ccCVV;
 
-    public List<Taco> Tacos;
+    private List<Burrito> burritos = new ArrayList<>();
+
+    public void addBurrito(Burrito newBurrito) {
+        burritos.add(newBurrito);
+    }
 
 
 

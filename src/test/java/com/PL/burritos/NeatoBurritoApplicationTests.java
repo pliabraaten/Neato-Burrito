@@ -1,4 +1,4 @@
-package com.PL.neato_burrito;
+package com.PL.burritos;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
