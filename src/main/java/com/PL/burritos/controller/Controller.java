@@ -1,4 +1,4 @@
-package com.PL.neato_burrito;
+package com.PL.burritos;
 
 import org.springframework.web.bind.annotation.GetMapping;
 
