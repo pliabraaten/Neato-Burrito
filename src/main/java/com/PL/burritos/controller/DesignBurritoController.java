@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 @Slf4j  // Lombok annotation that auto-generates SLF4J (Simple Logging Facade for Java) - Logger
 @Controller
-@RequestMapping("/design")  // Handle HTTP requests from path /design
+@RequestMapping("/maker")  // Handle HTTP requests from path /design
 @SessionAttributes  // Used to store data in user session to span multiple requests
 public class DesignBurritoController {
 
@@ -68,11 +68,12 @@ public class DesignBurritoController {
 
     // ENDPOINTS MAPPINGS
 
+    // Send request to view template to render as HTML
     // Mapping for the order form
     @GetMapping  // GET method for the /design path
-    public String showDesignForm() {
-        return "design";  // Renders design.html
-    // The design.html will have access to all the model attributes
+    public String showMakerForm() {
+        return "maker";  // Renders maker.html
+    // The maker.html will have access to all the model attributes
     }
 
 
@@ -87,6 +88,5 @@ public class DesignBurritoController {
     }
 
 
-    // Send request to view template to render as HTML
 
 }

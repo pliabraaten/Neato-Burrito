@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" th:href="@{/styles.css}" />
+        <title>Burrito Maker</title>
+    </head>
+    <body>
+        <h1>Make your burrito!</h1>
+
+<!-- References the burrito object from the model-->
+        <form method="POST" th:object="${burrito}">
+        <div clas="grid">
+<!-- WRAP -->
+            <!-- CSS styling -->
+            <div class="ingredient-group" id="wraps">
+                <h3>Designate your wrap</h3>
+                <!--Loop through each ingredient with wrap enum value-->
+                <div th:each="ingredient : ${wrap}">
+                    <!-- Sets value to ID; ex: FLTO -->
+                    <input th:field="*{ingredients}" type="checkbox"
+                           th:value="${ingredient.id}"/>
+                    <!-- Checkbox label; will replace INGREDIENT with value from the ingredient's name property -->
+                    <span th:text="${ingredient.name}">INGREDIENT</span>
+                    <br/>
+                </div>
+            </div>
+<!-- PROTEIN -->
+            <!-- CSS styling -->
+            <div class="ingredient-group" id="proteins">
+                <h3>Pick your protein!</h3>
+                <!--Loop through each ingredient with protein enum value-->
+                <div th:each="ingredient : ${protein}">
+                    <!-- Sets value to ID; ex: FLTO -->
+                    <input th:field="*{ingredients}" type="checkbox"
+                           th:value="${ingredient.id}"/>
+                    <!-- Checkbox label; will replace INGREDIENT with value from the ingredient's name property -->
+                    <span th:text="${ingredient.name}">INGREDIENT</span>
+                    <br/>
+                </div>
+            </div>
+<!-- CHEESE -->
+            <!-- CSS styling -->
+            <div class="ingredient-group" id="cheeses">
+                <h3>Choose your cheese!</h3>
+                <!--Loop through each ingredient with cheese enum value-->
+                <div th:each="ingredient : ${cheese}">
+                    <!-- Sets value to ID; ex: FLTO -->
+                    <input th:field="*{ingredients}" type="checkbox"
+                           th:value="${ingredient.id}"/>
+                    <!-- Checkbox label; will replace INGREDIENT with value from the ingredient's name property -->
+                    <span th:text="${ingredient.name}">INGREDIENT</span>
+                    <br/>
+                </div>
+            </div>
+<!-- VEGGIES -->
+            <!-- CSS styling -->
+            <div class="ingredient-group" id="veggies">
+                <h3>Determine your veggies!</h3>
+                <!--Loop through each ingredient with veggies enum value-->
+                <div th:each="ingredient : ${veggies}">
+                    <!-- Sets value to ID; ex: FLTO -->
+                    <input th:field="*{ingredients}" type="checkbox"
+                           th:value="${ingredient.id}"/>
+                    <!-- Checkbox label; will replace INGREDIENT with value from the ingredient's name property -->
+                    <span th:text="${ingredient.name}">INGREDIENT</span>
+                    <br/>
+                </div>
+            </div>
+<!-- SAUCE -->
+            <!-- CSS styling -->
+            <div class="ingredient-group" id="sauces">
+                <h3>Select your sauce!</h3>
+                <!--Loop through each ingredient with sauce enum value-->
+                <div th:each="ingredient : ${sauce}">
+                    <!-- Sets value to ID; ex: FLTO -->
+                    <input th:field="*{ingredients}" type="checkbox"
+                           th:value="${ingredient.id}"/>
+                    <!-- Checkbox label; will replace INGREDIENT with value from the ingredient's name property -->
+                    <span th:text="${ingredient.name}">INGREDIENT</span>
+                    <br/>
+                </div>
+            </div>
+        </div>
+
+        <div>
+
+            <h3>Name your burrito:</h3>
+            <!-- Binds inputted value to the name field of the Burrito object in the model -->
+            <input type="text" th:field="*{name}"/>
+            <br/>
+
+            <button>Submit Your Burrito</button>
+        </div>
+        </form>
+    </body>
+</html>
