@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+    <title>Neato Burrito</title>
+</head>
+<body>
+    <!-- Form should be posted to /orders operator -->
+        <!--  burritoOrder is root object of this form  -->
+    <form method="POST" th:action="@{/orders}" th:object="${burritoOrder}">
+
+        <h1>Order your burritos!</h1>
+
+        <img th:src="@{/images/NeatoBurrito.png}"
+             width="100"
+             height="100"/>
+
+
+        <h3>Your burritos in this order:</h3>
+
+        <!-- Link to make another burrito by going back to maker.html-->
+        <a th:href="@{/maker}" id="another">Make another burrito</a>
+        <br/>
+
+        <!-- Loop through burritos in the order and display the names-->
+        <ul>
+            <li th:each="burrito : ${burritoOrder.burritos}">
+                <span th:text="${burrito.name}">burrito name</span>
+            </li>
+        </ul>
+
+
+        <h3>Deliver my beau-rrito-iful burritos to...</h3>
+
+    <!-- "for" attribute specifies which input tag the label is bound to; "for" in label matches "id" in input -->
+        <label for="deliveryName">Name: </label>
+        <input type="text" id="deliveryName" th:field="*{deliveryName}"/>
+        <br/>
+
+    <!-- label tag can also be tied to input tag if the input tag is inside the label tag -->
+        <label>Street Address: <input type="text" th:field="*{deliveryStreet}"/></label>
+        <br/>
+
+        <label>City: <input type="text" th:field="*{deliveryCity}"/></label>
+        <br/>
+
+        <label>State: <input type="text" th:field="*{deliveryState}"/>
+        </label>
+        <br/>
+
+        <label>Zip: <input type="text" th:field="*{deliveryZip}"/></label>
+        <br/>
+
+
+        <h3>How I'll pay...</h3>
+
+        <!-- "for" attribute specifies which input tag the label is bound to; "for" in label matches "id" in input -->
+        <label for="ccNumber">Credit Card #: </label>
+        <input type="text" id="ccNumber" th:field="*{ccNumber}"/>
+        <br/>
+
+        <label for="ccExpiration">Expiration Date: </label>
+        <input type="text" id="ccExpiration" th:field="*{ccExpiration}"/>
+        <br/>
+
+        <label for="ccCVV">CVV: </label>
+        <input type="text" id="ccCVV" th:field="*{ccCVV}"/>
+        <br/>
+
+
+        <input type="submit" value="Submit Order"/>
+
+    </form>
+</body>
+</html>
