@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -54,12 +55,15 @@ public class BurritoMakerController {
 //            new Ingredient("SRCR", "Sour Cream", Ingredient.Type.SAUCE)
 //        );
 
-        // Takes full ingredient list and sorts by ingredient type
+        // Convert Iterable ingredients into a List for the filterByType helper method
+        List<Ingredient> ingredientList = new ArrayList<>();
+        ingredients.forEach(ingredientList::add);
+
+        // Takes the converted ingredient list and sorts by ingredient type
         Type[] types = Ingredient.Type.values();
         for (Type type : types) {
             model.addAttribute(type.toString().toLowerCase(),
-                filterByType(ingredients, type));  // Helper function below
-
+                filterByType(ingredientList, type));  // Helper function below
         }
     }
 
@@ -107,13 +111,10 @@ public class BurritoMakerController {
     // HELPER METHODS
 
     // Filters ingredients list by type
-    private Iterable<Ingredient> filterByType(List<Ingredient> ingredients, Type type) {
-        return ingredients
+    private Iterable<Ingredient> filterByType(List<Ingredient> ingredientList, Type type) {
+        return ingredientList
                 .stream()
                 .filter(x -> x.getType().equals(type))
                 .collect(Collectors.toList());
     }
-
-
-
 }

@@ -11,7 +11,7 @@ import java.util.List;
 public class Burrito {
 
     private Long id;  // Id needed for DB
-    private Date createdAt = new Date();  // Track when burrito was created
+    private Date createdAt; // = new Date();  // Track when burrito was created
 
     @NotNull  // Adds validation to these fields - Validation enforced in controllers
     @Size(min=5, message = "Name must be at least 5 characters long")
