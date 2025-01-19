@@ -59,15 +59,27 @@
 
         <!-- "for" attribute specifies which input tag the label is bound to; "for" in label matches "id" in input -->
         <label for="ccNumber">Credit Card #: </label>
-        <input type="text" id="ccNumber" th:field="*{ccNumber}"/>
-        <br/>
+            <input type="text" id="ccNumber" th:field="*{ccNumber}"/>
+        <!-- Validation error: style as error; if hasErrors, render <span> with ccNumber field validation message -->
+            <span class="ValidationError"
+                  th:if="${#fields.hasErrors('ccNumber')}"
+                  th:errors="*{ccNumber}">CC Num Error</span>
+            <br/>
 
         <label for="ccExpiration">Expiration Date: </label>
         <input type="text" id="ccExpiration" th:field="*{ccExpiration}"/>
+        <!-- Validation error: style as error; if hasErrors, render <span> with ccExpiration field validation message -->
+        <span class="ValidationError"
+              th:if="${#fields.hasErrors('ccExpiration')}"
+              th:errors="*{ccExpiration}">CC Expire Error</span>
         <br/>
 
         <label for="ccCVV">CVV: </label>
         <input type="text" id="ccCVV" th:field="*{ccCVV}"/>
+        <!-- Validation error: style as error; if hasErrors, render <span> with ccCVV field validation message -->
+        <span class="ValidationError"
+              th:if="${#fields.hasErrors('ccCVV')}"
+              th:errors="*{ccCVV}">CC CVV Error</span>
         <br/>
 
 
