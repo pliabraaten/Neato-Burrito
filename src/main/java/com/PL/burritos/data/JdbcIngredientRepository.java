@@ -11,11 +11,11 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public class jdbcIngredientRepository implements IngredientRepository {
+public class JdbcIngredientRepository implements IngredientRepository {
 
     private JdbcTemplate jdbcTemplate;
 
-    public jdbcIngredientRepository(JdbcTemplate jdbcTemplate) {
+    public JdbcIngredientRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
