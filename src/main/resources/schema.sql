@@ -22,17 +22,18 @@ create table if not exists Burrito (
     created_at timestamp not null
 );
 
+create table if not exists Ingredient (
+    id varchar(4) not null primary key,
+    name varchar(25) not null,
+    type varchar(10) not null
+);
+
 create table if not exists Ingredient_Ref (
     ingredient varchar(4) not null,
     burrito bigint not null,
     burrito_key bigint not null
 );
 
-create table if not exists Ingredient (
-    id varchar(4) not null,
-    name varchar(25) not null,
-    type varchar(10) not null
-);
 
 alter table Burrito
     add foreign key (burrito_order) references Burrito_Order(id);

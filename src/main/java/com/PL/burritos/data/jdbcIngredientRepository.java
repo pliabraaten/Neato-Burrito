@@ -15,7 +15,7 @@ public class jdbcIngredientRepository implements IngredientRepository {
 
     private JdbcTemplate jdbcTemplate;
 
-    public void JdbcIngredientRepository(JdbcTemplate jdbcTemplate) {
+    public jdbcIngredientRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
