@@ -4,9 +4,11 @@ import com.PL.burritos.entity.Burrito;
 import com.PL.burritos.entity.BurritoOrder;
 import com.PL.burritos.entity.Ingredient;
 import com.PL.burritos.entity.Ingredient.Type;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -75,8 +77,14 @@ public class BurritoMakerController {
 
     // Receive data from the order form
     @PostMapping  // POST method to gather data
-    public String processBurrito(Burrito newBurrito,
+          // Add @Valid to check validation set in the Burrito class after it's bound to submitted form data
+    public String processBurrito(@Valid Burrito newBurrito, Errors errors,
                                  @ModelAttribute BurritoOrder burritoOrder) {  // Bind form input to objects
+
+        if (errors.hasErrors()) {  // If validation errors, stop method and send back to maker.html
+            return "maker";
+        }
+
         burritoOrder.addBurrito(newBurrito);  // Add new burrito to order in model
         log.info("Processing burrito: {}", newBurrito);
         return "redirect:/orders/current";
