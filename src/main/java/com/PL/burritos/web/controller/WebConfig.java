@@ -1,4 +1,4 @@
-package com.PL.burritos.controller;
+package com.PL.burritos.web.controller;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;

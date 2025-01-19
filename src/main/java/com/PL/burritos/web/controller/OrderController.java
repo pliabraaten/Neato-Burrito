@@ -1,4 +1,4 @@
-package com.PL.burritos.controller;
+package com.PL.burritos.web.controller;
 
 import com.PL.burritos.entity.BurritoOrder;
 import jakarta.validation.Valid;

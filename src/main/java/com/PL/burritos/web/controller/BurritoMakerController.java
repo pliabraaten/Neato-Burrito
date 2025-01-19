@@ -1,11 +1,13 @@
-package com.PL.burritos.controller;
+package com.PL.burritos.web.controller;
 
+import com.PL.burritos.data.IngredientRepository;
 import com.PL.burritos.entity.Burrito;
 import com.PL.burritos.entity.BurritoOrder;
 import com.PL.burritos.entity.Ingredient;
 import com.PL.burritos.entity.Ingredient.Type;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -21,32 +23,43 @@ import java.util.stream.Collectors;
 @SessionAttributes("burritoOrder")  // Used to store data in user session to span multiple requests
 public class BurritoMakerController {
 
+    private final IngredientRepository ingredientRepository;
+
+    // Constructor
+    @Autowired
+    public BurritoMakerController(IngredientRepository ingredientRepository) {
+        this.ingredientRepository = ingredientRepository;
+    }
+
     // MODEL ATTRIBUTES (model ferries data between controller and view/html)
 
     // Adds ingredient list into model to be available in view for user to select
     @ModelAttribute
     public void addIngredientsToModel(Model model) {
 
-        // Builds list of ingredients
-        List<Ingredient> ingredients = Arrays.asList(
-            new Ingredient("FLTO", "Flour Tortilla", Ingredient.Type.WRAP),
-            new Ingredient("COTO", "Corn Tortilla", Ingredient.Type.WRAP),
-            new Ingredient("GRBF", "Ground Beef", Ingredient.Type.PROTEIN),
-            new Ingredient("CARN", "Carnitas", Ingredient.Type.PROTEIN),
-            new Ingredient("TMTO", "Diced Tomatoes", Ingredient.Type.VEGGIES),
-            new Ingredient("LETC", "Lettuce", Ingredient.Type.VEGGIES),
-            new Ingredient("CHED", "Cheddar", Ingredient.Type.CHEESE),
-            new Ingredient("JACK", "Monterrey Jack", Ingredient.Type.CHEESE),
-            new Ingredient("SLSA", "Salsa", Ingredient.Type.SAUCE),
-            new Ingredient("SRCR", "Sour Cream", Ingredient.Type.SAUCE)
-        );
+        // Pulls ingredients from DB and makes list (Iterable allows for enhanced for loop)
+        Iterable<Ingredient> ingredients = ingredientRepository.findAll();  // Queries via injected repository methods
+
+//        // Builds list of ingredients - HARD CODED WITHOUT DB
+//        List<Ingredient> ingredients = Arrays.asList(
+//            new Ingredient("FLTO", "Flour Tortilla", Ingredient.Type.WRAP),
+//            new Ingredient("COTO", "Corn Tortilla", Ingredient.Type.WRAP),
+//            new Ingredient("GRBF", "Ground Beef", Ingredient.Type.PROTEIN),
+//            new Ingredient("CARN", "Carnitas", Ingredient.Type.PROTEIN),
+//            new Ingredient("TMTO", "Diced Tomatoes", Ingredient.Type.VEGGIES),
+//            new Ingredient("LETC", "Lettuce", Ingredient.Type.VEGGIES),
+//            new Ingredient("CHED", "Cheddar", Ingredient.Type.CHEESE),
+//            new Ingredient("JACK", "Monterrey Jack", Ingredient.Type.CHEESE),
+//            new Ingredient("SLSA", "Salsa", Ingredient.Type.SAUCE),
+//            new Ingredient("SRCR", "Sour Cream", Ingredient.Type.SAUCE)
+//        );
 
         // Takes full ingredient list and sorts by ingredient type
-       Type[] types = Ingredient.Type.values();
+        Type[] types = Ingredient.Type.values();
         for (Type type : types) {
             model.addAttribute(type.toString().toLowerCase(),
-                    filterByType(ingredients, type));
-                  // Helper function below
+                filterByType(ingredients, type));  // Helper function below
+
         }
     }
 
