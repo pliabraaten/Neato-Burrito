@@ -7,11 +7,19 @@ import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
 import java.awt.*;
+import java.io.Serial;
+import java.io.Serializable;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data  // Annotation from lombok that auto generates constructors and basic methods
-public class BurritoOrder {
+public class BurritoOrder implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    private Long id;  // For db tracking
+    private Date placedAt;  // When order was made
 
     @NotBlank(message = "Delivery name is required")  // Validations on inputs
     private String deliveryName;
