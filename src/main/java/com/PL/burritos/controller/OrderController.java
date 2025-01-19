@@ -30,9 +30,6 @@ public class OrderController {
     // Render /current to show current order
     @GetMapping("/current")
     public String orderForm() {
-
-        System.out.println("Made it to GetMapping /current");
-
         return "orderForm";
     }
 
