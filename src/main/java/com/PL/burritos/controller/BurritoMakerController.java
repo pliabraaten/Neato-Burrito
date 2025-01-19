@@ -78,6 +78,9 @@ public class BurritoMakerController {
     public String processBurrito(Burrito newBurrito,
                                  @ModelAttribute BurritoOrder burritoOrder) {  // Bind form input to objects
         burritoOrder.addBurrito(newBurrito);  // Add new burrito to order in model
+
+        System.out.println("New burrito: " + newBurrito.getName());
+
         log.info("Processing burrito: {}", newBurrito);
         return "redirect:/orders/current";
     }
