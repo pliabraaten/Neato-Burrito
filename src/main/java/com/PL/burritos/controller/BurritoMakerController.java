@@ -7,10 +7,7 @@ import com.PL.burritos.entity.Ingredient.Type;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -74,6 +71,15 @@ public class BurritoMakerController {
     public String showMakerForm() {
         return "maker";  // Renders maker.html
     // The maker.html will have access to all the model attributes
+    }
+
+    // Receive data from the order form
+    @PostMapping  // POST method to gather data
+    public String processBurrito(Burrito newBurrito,
+                                 @ModelAttribute BurritoOrder burritoOrder) {  // Bind form input to objects
+        burritoOrder.addBurrito(newBurrito);  // Add new burrito to order in model
+        log.info("Processing burrito: {}", newBurrito);
+        return "redirect:/orders/current";
     }
 
 
