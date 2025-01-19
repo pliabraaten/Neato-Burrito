@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:th="http://www.w3.org/1999/xhtml">
+                xmlns:th="http://www.thymeleaf.org">
+
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" th:href="@{/styles.css}" />
+<!--        <link rel="stylesheet" th:href="@{/styles.css}" />-->
         <title>Burrito Maker</title>
     </head>
     <body>
         <h1>Make your burrito!</h1>
 
+        <img th:src="@{/images/NeatoBurrito.png}"
+             width="100"
+             height="100"/>
+
 <!-- References the burrito object from the model-->
         <form method="POST" th:object="${burrito}">
-        <div clas="grid">
+        <div class="grid">
 <!-- WRAP -->
             <!-- CSS styling -->
             <div class="ingredient-group" id="wraps">
@@ -20,7 +25,7 @@
                 <div th:each="ingredient : ${wrap}">
                     <!-- Sets value to ID; ex: FLTO -->
                     <input th:field="*{ingredients}" type="checkbox"
-                           th:value="${ingredient.id}"/>
+                           th:value="${ingredient.ID}"/>
                     <!-- Checkbox label; will replace INGREDIENT with value from the ingredient's name property -->
                     <span th:text="${ingredient.name}">INGREDIENT</span>
                     <br/>
@@ -34,7 +39,7 @@
                 <div th:each="ingredient : ${protein}">
                     <!-- Sets value to ID; ex: FLTO -->
                     <input th:field="*{ingredients}" type="checkbox"
-                           th:value="${ingredient.id}"/>
+                           th:value="${ingredient.ID}"/>
                     <!-- Checkbox label; will replace INGREDIENT with value from the ingredient's name property -->
                     <span th:text="${ingredient.name}">INGREDIENT</span>
                     <br/>
@@ -48,7 +53,7 @@
                 <div th:each="ingredient : ${cheese}">
                     <!-- Sets value to ID; ex: FLTO -->
                     <input th:field="*{ingredients}" type="checkbox"
-                           th:value="${ingredient.id}"/>
+                           th:value="${ingredient.ID}"/>
                     <!-- Checkbox label; will replace INGREDIENT with value from the ingredient's name property -->
                     <span th:text="${ingredient.name}">INGREDIENT</span>
                     <br/>
@@ -62,7 +67,7 @@
                 <div th:each="ingredient : ${veggies}">
                     <!-- Sets value to ID; ex: FLTO -->
                     <input th:field="*{ingredients}" type="checkbox"
-                           th:value="${ingredient.id}"/>
+                           th:value="${ingredient.ID}"/>
                     <!-- Checkbox label; will replace INGREDIENT with value from the ingredient's name property -->
                     <span th:text="${ingredient.name}">INGREDIENT</span>
                     <br/>
@@ -76,7 +81,7 @@
                 <div th:each="ingredient : ${sauce}">
                     <!-- Sets value to ID; ex: FLTO -->
                     <input th:field="*{ingredients}" type="checkbox"
-                           th:value="${ingredient.id}"/>
+                           th:value="${ingredient.ID}"/>
                     <!-- Checkbox label; will replace INGREDIENT with value from the ingredient's name property -->
                     <span th:text="${ingredient.name}">INGREDIENT</span>
                     <br/>

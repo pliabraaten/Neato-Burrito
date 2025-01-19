@@ -19,8 +19,8 @@ import java.util.stream.Collectors;
 @Slf4j  // Lombok annotation that auto-generates SLF4J (Simple Logging Facade for Java) - Logger
 @Controller
 @RequestMapping("/maker")  // Handle HTTP requests from path /design
-@SessionAttributes  // Used to store data in user session to span multiple requests
-public class DesignBurritoController {
+@SessionAttributes("burritoOrder")  // Used to store data in user session to span multiple requests
+public class BurritoMakerController {
 
     // MODEL ATTRIBUTES (model ferries data between controller and view/html)
 
